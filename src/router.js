@@ -16,6 +16,11 @@ export default new Router({
       redirect: { name: 'home' }
     },
     {
+      path: "/galeria",
+      name: "galeria",
+      component: () => import("@/views/Galeria.vue")
+    },
+    {
       path: "/eventos",
       name: "eventos",
       component: () => import("@/views/Eventos.vue")
