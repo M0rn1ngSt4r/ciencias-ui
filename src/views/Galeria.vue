@@ -3,36 +3,11 @@
   .pruebaContenedor.w-100.center
     h1 {{ msg }}
     div(class='gallery')
-      figure
-        a(class='link', v-bind:href="listaImagenes[0].sitio") 
-        img(v-bind:src="listaImagenes[0].url" )
-        p(class='title') {{ listaImagenes[0].titulo }}
-        p(class='location') {{ listaImagenes[0].ubicacion }}
-      figure
-        a(class='link', v-bind:href="listaImagenes[1].sitio") 
-        img(v-bind:src="listaImagenes[1].url" )
-        p(class='title') {{ listaImagenes[1].titulo }}
-        p(class='location') {{ listaImagenes[1].ubicacion }}
-      figure
-        a(class='link', v-bind:href="listaImagenes[2].sitio") 
-        img(v-bind:src="listaImagenes[2].url" )
-        p(class='title') {{ listaImagenes[2].titulo }}
-        p(class='location') {{ listaImagenes[2].ubicacion }}
-      figure
-        a(class='link', v-bind:href="listaImagenes[3].sitio") 
-        img(v-bind:src="listaImagenes[3].url" )
-        p(class='title') {{ listaImagenes[3].titulo }}
-        p(class='location') {{ listaImagenes[3].ubicacion }}
-      figure
-        a(class='link', v-bind:href="listaImagenes[4].sitio") 
-        img(v-bind:src="listaImagenes[4].url" )
-        p(class='title') {{ listaImagenes[4].titulo }}
-        p(class='location') {{ listaImagenes[4].ubicacion }}
-      figure
-        a(class='link', v-bind:href="listaImagenes[5].sitio") 
-        img(v-bind:src="listaImagenes[5].url" )
-        p(class='title') {{ listaImagenes[5].titulo }}
-        p(class='location') {{ listaImagenes[5].ubicacion }}
+      figure(v-bind:class="{border_right: ((i+1)%2)}" v-for="(imagen, i) in listaImagenes")
+        a(v-bind:href="imagen.sitio") 
+          img(v-bind:src="imagen.url" )
+        a(class='title' v-bind:href="imagen.sitio") {{ imagen.titulo }}
+        p(class='location') {{ imagen.ubicacion }}
 </template>
 
 <script>
@@ -91,38 +66,38 @@ export default {
         grid-gap: 2 rem;
       }
     }
-    p{
-      &.title{
-        color: $navy;
-        font-weight: 900;
-      }
-      &.location{
-        color: $near-black;
-        font-weight: 600;
-        font-size: 80%;
-      }
+    .title{
+      color: $navy;
+      font-weight: 900;
+      text-decoration: none;
+    }
+    .location{
+      color: $near-black;
+      font-weight: 600;
+      font-size: 80%;
     }
     img{
       border: 5px solid $gold;
       border-radius: 4px;
       width: 100%;
       height: auto;
+      max-height: 300px;
       object-fit: cover;
       display: block;
+      margin-bottom: 25px;
     }
     figure{
+      height: 375px;
       position: relative;
-      border-right: 3px solid #dfdfdf;
       padding-right: 35px;
       margin-left: 10px;
       margin-right: 0px;
       padding-left: 15px;
     }
+    .border_right{
+      border-right: 3px solid #dfdfdf;
+    }
     a{
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 100%;
       width: 100%;
     }
   }
